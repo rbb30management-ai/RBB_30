@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brand — RBB_30</title><meta name="description" content="Official RBB_30 — Real Big Boss website for Michael Andam. Gamer, streamer and content creator.">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800&display=swap');
+
+:root{
+  --bg:#07050b;
+  --panel:#100b18;
+  --panel2:#171021;
+  --purple:#7627d8;
+  --purple2:#a855f7;
+  --gold:#f6c945;
+  --text:#f7f4fb;
+  --muted:#a9a1b5;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 24px 70px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 80% 10%,rgba(118,39,216,.18),transparent 30%),
+    radial-gradient(circle at 10% 80%,rgba(246,201,69,.06),transparent 25%),
+    var(--bg);
+  color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.6;min-height:100vh;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+.navbar{position:sticky;top:0;z-index:20;background:rgba(7,5,11,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.logo{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:1px;font-size:1.15rem}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-size:.86rem;color:#c9c2d2;font-weight:600;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.menu{display:none;background:none;border:0;color:white;font-size:1.6rem}
+.hero{min-height:calc(100vh - 76px);display:grid;place-items:center;padding:80px 0;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(168,85,247,.18);border-radius:50%;right:-160px;bottom:-180px;box-shadow:0 0 0 60px rgba(168,85,247,.025),0 0 0 120px rgba(168,85,247,.015)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:3px;text-transform:uppercase;font-size:.72rem;margin-bottom:18px}
+h1{font-family:Orbitron,sans-serif;font-size:clamp(2.8rem,7vw,6.6rem);line-height:.98;letter-spacing:-3px;text-transform:uppercase}
+h1 .accent{color:var(--purple2);text-shadow:0 0 35px rgba(168,85,247,.25)}
+.hero h2{font-size:clamp(1.05rem,2vw,1.45rem);margin:22px 0 16px;color:#ddd5e8;font-weight:700}
+.lead{max-width:650px;color:var(--muted);font-size:1.05rem}
+.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 19px;border-radius:10px;border:1px solid var(--line);font-weight:800;font-size:.88rem;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#0b0804;box-shadow:0 10px 35px rgba(246,201,69,.12)}
+.btn-dark{background:#110c18}
+.hero-card{background:linear-gradient(145deg,rgba(118,39,216,.18),rgba(16,11,24,.92));border:1px solid rgba(168,85,247,.28);border-radius:28px;padding:35px;box-shadow:var(--shadow);position:relative}
+.hero-card .monogram{font-family:Orbitron;font-size:5.5rem;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(246,201,69,.65);line-height:1}
+.hero-card h3{font-family:Orbitron;font-size:1.35rem;margin:22px 0 5px}
+.hero-card p{color:var(--muted)}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.stat{padding:14px;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:12px}
+.stat b{display:block;color:var(--gold);font-family:Orbitron;font-size:1.05rem}.stat span{font-size:.7rem;color:var(--muted)}
+.page-head{padding:105px 0 65px;border-bottom:1px solid var(--line)}
+.page-head h1{font-size:clamp(2.3rem,6vw,4.7rem);letter-spacing:-2px}
+.page-head p{max-width:650px;color:var(--muted);margin-top:20px;font-size:1.05rem}
+.section{padding:85px 0}
+.section-title{font-family:Orbitron;font-size:1.65rem;margin-bottom:12px}
+.section-copy{color:var(--muted);max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.card{background:linear-gradient(145deg,rgba(23,16,33,.96),rgba(10,7,14,.96));border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 15px 45px rgba(0,0,0,.22)}
+.card:hover{border-color:rgba(168,85,247,.38)}
+.icon{width:45px;height:45px;display:grid;place-items:center;border-radius:12px;background:rgba(118,39,216,.15);color:var(--gold);font-size:1.2rem;margin-bottom:20px}
+.card h3{font-family:Orbitron;font-size:1rem;margin-bottom:9px}
+.card p{color:var(--muted);font-size:.92rem}
+.game-card{min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.game-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(168,85,247,.25),transparent 42%)}
+.game-card>*{position:relative}
+.game-tag{display:inline-block;color:var(--gold);font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}
+.cta{padding:60px 0}.cta-box{border:1px solid rgba(246,201,69,.25);background:linear-gradient(110deg,rgba(118,39,216,.18),rgba(246,201,69,.06));padding:42px;border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta-box h2{font-family:Orbitron;font-size:1.5rem}.cta-box p{color:var(--muted);margin-top:7px}
+.socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.social{padding:13px 17px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-weight:700;font-size:.88rem}
+.contact-box{max-width:760px;margin-top:35px}.email{color:var(--gold);font-weight:800;font-size:1.05rem}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#81788e;font-size:.8rem}.footer-inner{display:flex;justify-content:space-between;gap:15px;align-items:center}
+@media(max-width:800px){
+  .nav-links{position:absolute;top:76px;left:0;right:0;background:rgba(7,5,11,.98);padding:20px;display:none;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}.menu{display:block}.hero-grid{grid-template-columns:1fr;gap:40px}.hero{padding:65px 0}.hero-card{max-width:520px}
+  .grid{grid-template-columns:1fr}.cta-box{flex-direction:column;align-items:flex-start}.footer-inner{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){h1{letter-spacing:-1.8px}.hero-card{padding:25px}.hero-card .monogram{font-size:4rem}.stat-row{grid-template-columns:1fr}.buttons,.socials{flex-direction:column}.btn,.social{width:100%}}
+
+</style>
+</head><body>
+<header class="navbar"><div class="container nav-inner">
+<a class="logo" href="index.html">RBB<span>_30</span></a>
+<button class="menu" aria-label="Open menu">☰</button>
+<nav class="nav-links"><a href="index.html" class="">Home</a><a href="about.html" class="">About</a><a href="gaming.html" class="">Gaming</a><a href="streaming.html" class="">Streaming</a><a href="brand.html" class="active">Brand</a><a href="contact.html" class="">Contact</a></nav>
+</div></header>
+<main>
+<section class="page-head"><div class="container">
+<div class="eyebrow">THE BRAND</div><h1>REAL BIG <span class='accent'>BOSS</span></h1><h2>The identity behind RBB_30</h2><p>RBB_30 stands for Real Big Boss — a bold gaming identity built around confidence, competition, personality and the love of the game.</p>
+<div class="buttons">
+<a class="btn btn-primary" href="https://www.twitch.tv/rbb_30" target="_blank" rel="noopener">Twitch</a>
+<a class="btn btn-dark" href="https://www.instagram.com/rbb_30/" target="_blank" rel="noopener">Instagram</a>
+<a class="btn btn-dark" href="https://www.tiktok.com/@rbb._30" target="_blank" rel="noopener">TikTok</a>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="grid">
+<div class="card"><div class="icon">R</div><h3>RBB</h3><p>Real Big Boss — the name behind the creator identity.</p></div>
+<div class="card"><div class="icon">30</div><h3>RBB_30</h3><p>A recognizable online handle connecting the creator, streams and gaming community.</p></div>
+<div class="card"><div class="icon">✦</div><h3>THE VIBE</h3><p>Dark, bold, premium and competitive — with purple energy and gold highlights.</p></div>
+</div></div></section>
+
+</main>
+<footer><div class="container footer-inner"><span>© <span data-year></span> RBB_30 / Real Big Boss</span><span>Michael Andam • Ghana</span></div></footer>
+<script>
+
+const menu = document.querySelector('.menu');
+const links = document.querySelector('.nav-links');
+if(menu) menu.addEventListener('click',()=>links.classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>links?.classList.remove('open')));
+document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+
+</script>
+</body></html>
