@@ -67,7 +67,7 @@ footer{text-align:center;padding:28px;color:#b8a9c5;border-top:1px solid #49345b
 </div>
 </div>
 <div>
-<div class="ball-area"><div class="ball" id="ball">⚽</div></div>
+<div class="ball-area"><canvas id="ball-canvas" width="400" height="400" style="width:100%;max-width:300px;aspect-ratio:1;display:block;touch-action:pan-y;"></canvas></div>
 <p class="hint">Drag the football left or right!</p>
 </div>
 </section>
@@ -110,13 +110,103 @@ footer{text-align:center;padding:28px;color:#b8a9c5;border-top:1px solid #49345b
 </footer>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
-const ball=document.getElementById("ball");
-let dragging=false,startX=0,rotation=0;
-ball.addEventListener("pointerdown",e=>{dragging=true;startX=e.clientX;ball.setPointerCapture(e.pointerId)});
-ball.addEventListener("pointermove",e=>{if(!dragging)return;rotation+=(e.clientX-startX)*1.5;startX=e.clientX;ball.style.transform="rotateY("+rotation+"deg) rotateZ("+(rotation*.15)+"deg)"});
-ball.addEventListener("pointerup",()=>dragging=false);
-ball.addEventListener("pointercancel",()=>dragging=false);
+
+const canvas = document.getElementById("ball-canvas");
+const ctx = canvas.getContext("2d");
+
+let angle = 0;
+let dragging = false;
+let lastX = 0;
+
+function drawBall() {
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+  const r = 145;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Soft shadow
+  ctx.beginPath();
+  ctx.ellipse(cx, cy + 125, 105, 22, 0, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(0,0,0,0.35)";
+  ctx.fill();
+
+  // Sphere shading
+  const gradient = ctx.createRadialGradient(
+    cx - 45, cy - 55, 8, cx, cy, r
+  );
+  gradient.addColorStop(0, "#ffffff");
+  gradient.addColorStop(0.65, "#dedede");
+  gradient.addColorStop(0.9, "#858585");
+  gradient.addColorStop(1, "#29232f");
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = gradient;
+  ctx.fill();
+
+  // Rotating black football panels
+  const panels = [];
+  const count = 12;
+
+  for (let i = 0; i < count; i++) {
+    const a = (i / count) * Math.PI * 2 + angle;
+    const x = Math.sin(a) * 0.68;
+    const z = Math.cos(a) * 0.68;
+    const depth = Math.sqrt(1 - x * x);
+
+    panels.push({
+      x: cx + x * r,
+      y: cy + Math.sin(a * 2.5) * r * 0.45,
+      depth
+    });
+  }
+
+  panels.sort((a, b) => a.depth - b.depth);
+
+  panels.forEach(p => {
+    if (p.depth < 0.35) return;
+    ctx.beginPath();
+    ctx.ellipse(
+      p.x, p.y, 19 * p.depth, 25 * p.depth,
+      angle * 0.4, 0, Math.PI * 2
+    );
+    ctx.fillStyle = "#17131c";
+    ctx.fill();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+
+  // Bright highlight
+  ctx.beginPath();
+  ctx.arc(cx - 48, cy - 55, 30, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
+  ctx.fill();
+
+  angle += dragging ? 0 : 0.012;
+  requestAnimationFrame(drawBall);
+}
+
+canvas.addEventListener("pointerdown", e => {
+  dragging = true;
+  lastX = e.clientX;
+  canvas.setPointerCapture(e.pointerId);
+});
+
+canvas.addEventListener("pointermove", e => {
+  if (!dragging) return;
+  angle += (e.clientX - lastX) * 0.012;
+  lastX = e.clientX;
+});
+
+canvas.addEventListener("pointerup", () => dragging = false);
+canvas.addEventListener("pointercancel", () => dragging = false);
+
+drawBall();
+
 </script>
 </body>
 </html>
